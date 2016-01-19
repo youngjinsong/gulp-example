@@ -1,0 +1,16 @@
+{
+  "name": "gulp",
+  "author": "JSJS",
+  "version": "0.0.1",
+  "description": "gulp start",
+  "license": "BSD",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "*",
+    "gulp-uglify": "*",
+    "gulp-webserver": "*",
+    "gulp-concat": "*",
+    "gulp-livereload": "*"
+  },
+  "devDependencies": {}
+}
