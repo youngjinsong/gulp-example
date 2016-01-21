@@ -1,8 +1,8 @@
 $(function() {
-	var file2 = "file2";
+	var file3 = "file3";
 	
   function myFunc() {
-    return file2;
+    return file3;
   }
   
   myFunc();

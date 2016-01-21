@@ -1,16 +1,20 @@
 {
   "name": "gulp",
-  "author": "JSJS",
+  "author": "dodortus",
   "version": "0.0.1",
   "description": "gulp start",
   "license": "BSD",
-  "main": "gulpfile.js",
   "dependencies": {
     "gulp": "*",
     "gulp-uglify": "*",
-    "gulp-webserver": "*",
     "gulp-concat": "*",
+    "gulp-minify-css": "*",
+    "gulp-watch": "*",
+    "gulp-webserver": "*",
     "gulp-livereload": "*"
   },
-  "devDependencies": {}
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "node gulpfile.js"
+  }
 }

@@ -1,0 +1,23 @@
+/*!
+ *
+ * Meeting - tooltip.css
+ *
+ * IMPORTANT NOTE: This file is licensed only for use in providing the RSUPPORT services,
+ *
+ * @license Copyright (c) RSUPPORT CO., LTD. (http://www.rsupport.com/)
+ * @author Front-End Team | Park Jeong Shik (jspark@rsupport.com)
+ *
+ */
+.popover { display: none; position: absolute; width: 300px; border: solid 1px #666; background: #fff; box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); }
+.popover .wrap { position: relative; padding: 4px; }
+.popover .title { margin: 0; padding: 0 3px 4px 3px; line-height: 20px; font-size: 12px; border-bottom: solid 1px #EBEBEB; }
+.popover article { padding: 8px 3px; line-height: 18px; color: #666; font-size: 12px; }
+.popover .arrow {
+  display: inline-block; position: absolute; top: 42%; right: -10px; width: 10px; height: 20px;
+  background: url(../img/ui/arrow.gif) no-repeat 0 0;
+}
+.popover.right .arrow { background-position: 0 -22px; left: -10px; }
+.popover.top .arrow,
+.popover.bottom .arrow { width: 20px; height: 10px; left: 20px; right: auto; }
+.popover.top .arrow { background-position: 0 -55px; top: auto; bottom: -10px; }
+.popover.bottom .arrow { background-position: 0 -43px; top: -10px; }
