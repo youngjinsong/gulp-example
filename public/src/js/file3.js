@@ -1,6 +1,6 @@
 $(function() {
-	var file3 = "file3";
-	
+  var file2 = "file3";
+  
   function myFunc() {
     return file3;
   }

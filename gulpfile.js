@@ -1,21 +1,28 @@
 // @REF http://programmingsummaries.tistory.com/356
 
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var minifyCSS = require('gulp-minify-css');
-var watch = require('gulp-watch');
-var webserver = require('gulp-webserver');
-var livereload = require('gulp-livereload');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
 
-var src = 'public/src';   // source directory path
-var dist = 'public/dist'; // result directory path
-var paths = {
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const minifyCSS = require('gulp-minify-css');
+const Imagemin = require('imagemin');
+
+const watch = require('gulp-watch');
+const webserver = require('gulp-webserver');
+const livereload = require('gulp-livereload');
+
+const src = 'public/src';   // source directory path
+const dist = 'public/dist'; // result directory path
+const paths = {
 	js: src + '/js/*.js',
-	css: src + '/css/*.css'
+	css: src + '/css/*.css',
+	scss: src + '/scss/*.scss',
+	img: src + '/img/*'
 };
 
 // 자바스크립트 파일을 하나로 합치고 압축한다.
+// 개별파일설정  gulp.src([file1.js', file2.js'])
 gulp.task('combine-js', function() {
 	return gulp.src(paths.js)
 		.pipe(concat('script.js'))
@@ -28,6 +35,25 @@ gulp.task('combine-css', function() {
     .pipe(concat('main.css'))
     .pipe(minifyCSS({keepBreaks:true}))
     .pipe(gulp.dest(dist + '/css'));
+});
+
+gulp.task('combine-img', function() {
+  new Imagemin()
+    .src(paths.img)         // *.{gif,jpg,png,svg}
+    .dest(dist + '/img')
+    .use(Imagemin.jpegtran({progressive: true}))
+    .use(Imagemin.optipng({optimizationLevel: 7}))
+    .run(function(err, files) {
+      console.log(files);
+      //=> {path: 'build/images/foo.jpg', contents: <Buffer 89 50 4e ...>}
+    });
+});
+
+// sass 파일을 css 로 컴파일한다.
+gulp.task('compile-scss', function() {
+  return gulp.src(paths.scss)
+    .pipe(sass())
+    .pipe(gulp.dest(src + '/css'));
 });
 
 // 웹서버를 실행한다 (default localhost:8000)
@@ -49,18 +75,18 @@ gulp.task('watch', function() {
     gulp.start('combine-css');
   });
   
+  watch(paths.scss).on('change', function(path) {
+    console.log('File (' + path + ') was running tasks...');
+    gulp.start('combine-css');
+  });
+  
   //livereload.listen();
   //console.log('Watch for changes and live reloads Chrome. Requires the Chrome extension \'LiveReload\'.');
   //gulp.watch(dist + '/**').on('change', livereload.changed);
 });
 
 /*
-// sass 파일을 css 로 컴파일한다.
-gulp.task('compile-sass', function() {
-	return gulp.src(paths.scss)
-		.pipe(sass())
-		.pipe(gulp.dest(dist + '/css'));
-});
+
 
 // HTML 파일을 압축한다.
 gulp.task('compress-html', function() {
