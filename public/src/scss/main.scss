@@ -1,0 +1,21 @@
+@charset "utf-8";
+html {
+  body, h1, h2, h3, h4, h5, h6, th, td, a, span, button, input, select, textarea, pre {
+    font-family: 'Noto Sans', 'Nanum Gothic', 'MalgunGothic', sans-serif !important;
+  }
+  
+  body.is-win-xp
+  , body.is-win-vista {
+    font-family: 'Nanum Gothic', 'MalgunGothic', sans-serif !important;
+
+    h1, h2, h3, h4, h5, h6, th, td, a, span, button, input, select, textarea, pre {
+      font-family: 'Nanum Gothic', 'MalgunGothic', sans-serif !important;
+    }
+  }
+
+  &[lang="ja"] {
+    body, h1, h2, h3, h4, h5, h6, th, td, a, span, button, input, select, textarea, pre {
+     font-family: 'meiryo', sans-serif !important;
+    }
+  }
+}
