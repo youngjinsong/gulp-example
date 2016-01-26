@@ -1,4 +1,4 @@
-# Client source build manager example
+# Simple client source build manager
 
 combine and watch js, css, img for any web project
 
