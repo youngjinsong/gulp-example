@@ -10,7 +10,8 @@ const sass = require('gulp-sass');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const minifyCSS = require('gulp-minify-css');
-//const imagemin = require('gulp-imagemin');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant'); 
 
 const watch = require('gulp-watch');
 const livereload = require('gulp-livereload');  // chrome livereload plugin 설치 필요.
@@ -53,13 +54,15 @@ gulp.task('compile-scss', function() {
 });
 
 // image 최적화 압축
-/*
 gulp.task('combine-img', function() {
-  return gulp.src(paths.img)
-    .pipe(imagemin({optimizationLevel: 3}))
-    .pipe(gulp.dest(dist + '/img'));
+  return gulp.src(paths.img + '*')
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{ removeViewBox: false }],
+      use: [pngquant()],
+    }))
+    .pipe(gulp.dest(dist + '/img'));  
 });
-*/
 
 // 파일 변경 감지
 gulp.task('watch', function() {
